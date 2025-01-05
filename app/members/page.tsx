@@ -1,49 +1,11 @@
 import Image from "next/image";
+import { getMembersList } from "@/app/_libs/microcms";
+import { MEMBERS_LIST_LIMIT } from "@/app/_constants/";
 import styles from "./index.module.css";
 
-const date = {
-  contents: [
-    {
-      id: "1",
-      image: {
-        url: "/img-member1.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "デイビッド・チャン",
-      position: "CEO",
-      profile:
-        "グローバルテクノロジー企業での豊富な経験を持つリーダー。以前は大手ソフトウェア企業の上級管理職として勤務し、新市場進出や収益成長に成功。",
-    },
+export default async function Page() {
+  const date = await getMembersList({ limit: MEMBERS_LIST_LIMIT });
 
-    {
-      id: "2",
-      image: {
-        url: "/img-member2.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "エミリー・サンダース",
-      position: "COO",
-      profile:
-        "グローバルテクノロジー企業での豊富な経験を持つリーダー。以前は大手ソフトウェア企業の上級管理職として勤務し、新市場進出や収益成長に成功。",
-    },
-    {
-      id: "3",
-      image: {
-        url: "/img-member3.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "ジョン・ウィルソン",
-      position: "CTO",
-      profile:
-        "グローバルテクノロジー企業での豊富な経験を持つリーダー。以前は大手ソフトウェア企業の上級管理職として勤務し、新市場進出や収益成長に成功。",
-    },
-  ],
-};
-
-export default function Page() {
   return (
     <div className={styles.container}>
       {date.contents.length === 0 ? (
